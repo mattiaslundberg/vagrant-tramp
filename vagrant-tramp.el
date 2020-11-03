@@ -62,7 +62,7 @@
          (status-data-raw (--map (mapconcat 'identity
                                             (-drop 4 (split-string it ",")) ",")
                                  status-lines-dropped))
-         (status-data (--map (replace-regexp-in-string " " "" it) status-data-raw))
+         (status-data (--map (string-trim it) status-data-raw))
          (status-groups (-split-on "" status-data))
          (vm-attrs '(id name provider state dir)))
     (--map (-zip vm-attrs it) status-groups)))
